@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { registerSchema, RegisterShemaType } from '@/schema/register.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
