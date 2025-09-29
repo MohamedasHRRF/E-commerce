@@ -1,14 +1,14 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { registerSchema, RegisterShemaType } from '@/schema/register.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useRouter } from "next/navigation"
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
+import axios from 'axios'
 const Register = () => {
 
 const router=useRouter()
@@ -89,7 +89,7 @@ async  function handelRegister(value:RegisterShemaType) {
               </FormItem>
             )}
           />
-
+      
           <FormField
             control={form.control}
             name="password"

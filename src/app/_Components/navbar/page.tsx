@@ -1,16 +1,27 @@
-import React from 'react'
+"use client";
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from './../../../../public/screens/freshcart-logo.svg'
+import { cartContext } from '@/Context/CartContext'
+import { Badge } from "@/components/ui/badge"
+import { signOut, useSession } from 'next-auth/react';
 
 const Navbar = () => {
+
+ const { data: session, status } = useSession();
+
+
+  const {numOfCartItems} = useContext(cartContext)
   return (
     <>   
      <div className='bg-slate-100 py-5 '>
         <div className='  w-full md:w-[80%] mx-auto  flex flex-col justify-between items-center md:flex-row text-center gap-2 '>
 
-<ul className='flex flex-col  md:flex-row text-center gap-6 '>
-    <li>
+                <ul className='flex flex-col  md:flex-row text-center gap-6 '>
+ {status === 'authenticated' && <>
+ 
+     <li>
         <Link href="/" >
         <Image src={logo} alt="freshcart logo" />
         </Link> 
@@ -19,65 +30,90 @@ const Navbar = () => {
 
     <li>
         <Link href="/categories">
-        Categories
+        Categories 
         </Link>
     </li> 
 
         <li>
         <Link href='/brands'>
-        Brand
+        Brands
         </Link>
     </li>
-
-        <li>
-        <Link href="/cart">
-        Cart
-        </Link>
-    </li>
-
-        <li>
-        <Link href="/orders">
+    
+    <li>
+        <Link href='/allorders'>
         Orders
         </Link>
     </li>
 
+        <li className='relative'>
+        <Link href="/cart">
+        Cart 
+        <Badge className="absolute -top-[40%] ">
+               {numOfCartItems}
+        </Badge>
+     
+        </Link>
+    </li>
 
-</ul>
+     
+ </>}
+      {status === 'unauthenticated' && <>
+		<Image
+			src={logo}
+			alt='freshcart-logo'
+		/>
+		</>}
+   
 
 
-<div className='flex flex-col  md:flex-row text-center gap-2 '>
+	{status === 'loading' && <h1>Loading...</h1>}
+                </ul>
 
 
-     <div>
-        <i className='fab mx-2 fa-facebook-f '></i>
-        <i className='fab mx-2 fa-youtube '></i>
-        <i className='fab mx-2 fa-linkedin '></i>
-        <i className='fab mx-2 fa-paypal '></i>
+        <div className='flex flex-col  md:flex-row text-center gap-2 '>
+            {status === 'authenticated' && <><div>
+           <li>
+			<button className='cursor-pointer' onClick={()=> signOut({
+				callbackUrl: `/login`
+			})}>Logout</button>
+			</li>
+         </div>
+         <div>
+            <h1 className='text-green-600'> welcome back {session.user.name}</h1>
+         </div>
+         
+         </>}
 
 
-
-     </div>
-
-     <div>
+            {status === 'unauthenticated' && <> 
+            <div>
          <Link href="/login">
         Login
         </Link>
         </div>
+
+        
         <div>
             <Link href="/register">
         register
         </Link>
-        </div>
+        </div></>}
+
+
+       
          
-         <div>
-            <button>logout</button>
-         </div>
+         
 
      
-</div>
-</div>
+        </div>
 
-    </div></>
+
+
+        </div>
+
+    </div>
+    </>
   )
 }
 

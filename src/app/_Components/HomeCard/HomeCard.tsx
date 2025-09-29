@@ -5,11 +5,11 @@
    CardFooter,
    CardHeader
  } from "@/components/ui/card" 
-  import { Button } from "@/components/ui/button"
 
   import Link from "next/link"
   import Image from "next/image"
 import { Product } from '@/types/product.type'
+import AddBtnCart from '../addBtnCart/AddBtnCart'
 
 
  const HomeCard = ({product} :{product: Product}    ) => {
@@ -44,7 +44,7 @@ import { Product } from '@/types/product.type'
     
   </CardFooter>
  </Link>
-  <Button className='w-full flex justify-between'>Add to cart <i className="fa-solid fa-cart-plus"></i> </Button>
+     <AddBtnCart id={product.id}/>
 </Card>
 
         

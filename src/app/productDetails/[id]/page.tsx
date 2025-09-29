@@ -2,7 +2,7 @@ import React from 'react'
 import getSingelProduct from "@/apis/singelProduct"
   import Image from "next/image"
 
-import { Button } from "@/components/ui/button"
+import AddBtnCart from '@/app/_Components/addBtnCart/AddBtnCart'
 const ProductDeatails = async ({params} : {params:{id:string}}) => {
 
   const {id}=await params
@@ -24,7 +24,7 @@ const ProductDeatails = async ({params} : {params:{id:string}}) => {
           <p>{data.ratingsAverage} <i className=" fa-solid text-yellow-300 fa-star "></i></p>
         </div>
 
-        <Button className='w-[90%]' >Add to cart</Button>
+        <AddBtnCart id={data.id} />
       </div>
 
     </div>
