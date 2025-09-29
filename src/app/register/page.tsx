@@ -4,7 +4,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { registerSchema, RegisterShemaType } from '@/schema/register.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+<<<<<<< HEAD
 import { useRouter } from "next/navigation"
+=======
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+>>>>>>> 41d39edd2c954b57c6c432f99e0ab5e8546bd2e1
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { toast } from 'sonner'
