@@ -6,7 +6,7 @@ import { registerSchema, RegisterShemaType } from '@/schema/register.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from "next/navigation"
 
-import axios from 'axios'
+
 import { useRouter } from 'next/navigation'
 
 import React from 'react'
